@@ -21,13 +21,10 @@ RUN git clone https://github.com/joan2937/pigpio.git && \
     make && \
     make install 
 
-RUN git clone https://github.com/geekworm-com/x-c1.git && \
-    cd x-c1 && \
-    chmod +x *.sh && \
-    sudo bash install-ubuntu.sh
+COPY fan.py /app/fan.py
 
 RUN echo "#! /bin/bash" > /app/entrypoint.sh && \
     echo "pigpiod" >> /app/entrypoint.sh && \
-    echo "python3 /app/x-c1/fan.py" >> /app/entrypoint.sh
+    echo "python3 /app/fan.py" >> /app/entrypoint.sh
 
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
