@@ -24,7 +24,7 @@ RUN git clone https://github.com/joan2937/pigpio.git && \
 COPY fan.py /app/fan.py
 
 RUN echo "#! /bin/bash" > /app/entrypoint.sh && \
-    echo "pigpiod" >> /app/entrypoint.sh && \
+    echo "pigpiod -m" >> /app/entrypoint.sh && \
     echo "python3 /app/fan.py" >> /app/entrypoint.sh
 
 ENTRYPOINT ["sh", "/app/entrypoint.sh"]
